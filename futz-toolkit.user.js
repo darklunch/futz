@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FUTz: The Fair Use & Accessibility Toolkit
 // @namespace    https://github.com/darklunch/futz/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Provides a suite of client-side tools to aid researchers, journalists, and users with disabilities in accessing and reading web content under the Fair Use doctrine.
 // @author       unsoundlogic (Dark Lunch Studios)
 // @match        *://*/*
