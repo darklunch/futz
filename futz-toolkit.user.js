@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FUTz: The Fair Use & Accessibility Toolkit
 // @namespace    https://github.com/darklunch/futz/
-// @version      1.0
+// @version      1.0.1
 // @description  Provides a suite of client-side tools to aid researchers, journalists, and users with disabilities in accessing and reading web content under the Fair Use doctrine.
 // @author       unsoundlogic (Dark Lunch Studios)
 // @match        *://*/*
@@ -110,27 +110,49 @@
     // --- 3. EXTERNAL LOOKUP & REFERER TOOLS ---
 
     /**
-     * Finds the main headline of the article for use in search lookups.
+     * Finds the main headline of the article using a multi-step heuristic.
      * @returns {string|null} The headline text or null if not found.
      */
     function getArticleHeadline() {
-        const selectors = ['h1', '.headline', '[class*="headline"]', '[id*="headline"]'];
-        for (let selector of selectors) {
+        // 1. Try meta tags first (most reliable)
+        const metaTitle = document.querySelector('meta[property="og:title"], meta[name="twitter:title"]');
+        if (metaTitle && metaTitle.content) {
+            return metaTitle.content.trim();
+        }
+
+        // 2. Try to find H1 within a main article container
+        const articleContainerSelectors = ['article', 'main', '[role="main"]', '#main', '#content', '.main', '.content'];
+        for (const containerSelector of articleContainerSelectors) {
+            const container = document.querySelector(containerSelector);
+            if (container) {
+                const headlineInContainer = container.querySelector('h1');
+                if (headlineInContainer) {
+                    return headlineInContainer.textContent.trim();
+                }
+            }
+        }
+
+        // 3. Fallback to global search for headline elements
+        const globalHeadlineSelectors = ['h1', '.headline', '[class*="headline"]', '[id*="headline"]'];
+        for (let selector of globalHeadlineSelectors) {
             const element = document.querySelector(selector);
             if (element) return element.textContent.trim();
         }
-        return null;
+
+        // 4. Final fallback to document.title, cleaned up
+        return document.title.split('|')[0].split(' - ')[0].trim();
     }
 
     /**
-     * Opens a Google search for the current article's headline.
+     * Opens a Google search for the current article's headline in a new tab.
      * This helps users find the canonical source or other versions of an article.
      */
     function searchHeadlineOnGoogle() {
         const headline = getArticleHeadline();
         if (headline) {
             GM_notification({ text: 'Searching headline on Google...', title: 'FUTz Toolkit', timeout: 2000 });
-            const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(headline)}`;
+            const siteOperator = ` site:${window.location.hostname}`;
+            const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(headline + siteOperator)}`;
             GM_openInTab(googleUrl, { active: true });
         } else {
             GM_notification({ text: 'Could not find a clear article headline to search.', title: 'FUTz Toolkit', timeout: 3000 });
@@ -138,7 +160,7 @@
     }
 
     /**
-     * Redirects to an external archiving or caching service.
+     * Redirects to an external archiving or caching service in a new tab.
      * A crucial tool for researchers looking for historical snapshots of a page.
      */
     function redirectToExternalService() {
@@ -154,7 +176,8 @@
         const index = parseInt(choice, 10) - 1;
         if (index >= 0 && index < services.length) {
             GM_notification({ text: `Redirecting to ${services[index].name}...`, title: 'FUTz Toolkit', timeout: 2000 });
-            window.location.href = services[index].url + window.location.href;
+            const newUrl = services[index].url + window.location.href;
+            GM_openInTab(newUrl, { active: true });
         }
     }
 
