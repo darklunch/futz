@@ -2,53 +2,86 @@ FUTz: The Fair Use & Accessibility Toolkit
 
 FUTz (pronounced "foots," from Fair Use Toolz) is a client-side browser userscript that provides a suite of tools to aid researchers, journalists, students, and users with disabilities in accessing and reading web content.
 
-This script does not perform any automatic actions. It is a user-controlled toolkit that empowers individuals to exercise their legal rights under the Fair Use doctrine of the U.S. Copyright Act (17 U.S.C. § 107) and enhances web accessibility.
-Core Principles & Legal Framework
+    ⚠️ Note: This script does not perform any automatic actions. It is a user-controlled toolkit designed to help individuals exercise their legal rights under the Fair Use doctrine of the U.S. Copyright Act (17 U.S.C. § 107) and to enhance web accessibility.
 
-This project is built on the following principles to ensure it operates as a lawful and ethical tool:
+📜 Core Principles & Legal Framework
+
+This project is guided by the following core principles to ensure lawful and ethical use:
 1. User-Controlled and Non-Automated
 
-The script does nothing on its own. Every action must be deliberately initiated by the user through a menu command. This design places the responsibility for lawful use squarely on the user, who must determine if their specific use case qualifies as Fair Use.
+    The script performs no automatic actions.
+
+    All actions must be manually triggered by the user via the menu.
+
+    Responsibility for lawful use rests with the user, who must determine if their case qualifies as Fair Use.
+
 2. Client-Side Operation Only
 
-This toolkit operates exclusively within the user's browser. It only manipulates page data that has already been sent to the client. It does not "hack," decrypt, or access any non-public server data. Its function is to re-organize and un-obstruct content that is already present but may be difficult to access.
+    FUTz runs entirely in the user's browser.
+
+    It only interacts with page data already sent to the client.
+
+    It does not hack, decrypt, or access private server-side content.
+
+    It simply re-organizes or de-obstructs already-present content.
+
 3. Empowering Lawful Use Cases
 
-The primary purpose of this toolkit is to facilitate legally protected activities, including:
+This toolkit is designed to support legally protected activities, including:
 
-    Research & Scholarship: Researchers often need to access numerous articles for meta-analysis, data collection, and citation. This toolkit aids in managing metered access and viewing content for academic purposes.
+    📚 Research & Scholarship
+    Manage metered access and view content for academic analysis, citation, or synthesis.
 
-    Journalism, Criticism & Commentary: Journalists require access to information to report on events, verify facts, and provide commentary. The tools here assist in this news-gathering process.
+    📰 Journalism, Criticism & Commentary
+    Access and verify facts, find sources, and support commentary.
 
-    Education: Students and educators can use these tools to access materials for classroom discussion, research projects, and educational assignments under Fair Use guidelines.
+    🏫 Education
+    Enables access for classroom discussions, projects, and academic assignments under Fair Use.
 
-    Accessibility: Users with print disabilities, ADHD, or other conditions can benefit immensely from the Reader Mode, which removes distracting visual elements. The DOM Reset function can remove overlays that interfere with screen reader software.
+    ♿ Accessibility
+    Enhances usability for users with visual impairments, ADHD, or other conditions through features like Reader Mode and DOM Reset.
 
-Toolkit Features
+🧰 Toolkit Features
 
-The script adds the following commands to the Tampermonkey menu:
+FUTz adds the following menu commands via Tampermonkey or other userscript managers:
 
-    Clear Site Storage & Reload: Resets site data (cookies, local storage) to help manage metered access for research purposes.
+    Clear Site Storage & Reload
+    Resets cookies/local storage to manage metered content.
 
-    Remove Obstructive Elements: A tool to remove non-content elements like pop-up modals, sticky banners, and overlays that interfere with reading or screen readers.
+    Remove Obstructive Elements
+    Removes pop-ups, overlays, sticky headers, and similar barriers.
 
-    Enter Reader Mode: Extracts the main article content into a clean, simplified, and clutter-free view, significantly improving readability and accessibility.
+    Enter Reader Mode
+    Displays a clean, simplified article view to improve readability and accessibility.
 
-    Search Headline on Google: A convenience tool that helps users find the canonical source of an article or alternative versions via a public search engine, a common step in academic research.
+    Search Headline on Google
+    Helps locate the original article or alternate sources via search.
 
-    Lookup in External Archives: Provides one-click links to public web archives (like Archive.today, 12ft.io). This is a critical tool for researchers and digital archivists needing access to historical or preserved versions of a webpage.
+    Lookup in External Archives
+    One-click access to public archives like Archive.today or 12ft.io for preserved versions of a page.
 
-Installation
+🚀 Installation
 
-    You must have a userscript manager installed in your browser, such as Tampermonkey, Violentmonkey, or Greasemonkey.
+    Install a userscript manager such as:
 
-    Navigate to the script file (futz-toolkit.user.js) in this repository and click the [RAW] button.
+        Tampermonkey
 
-    Your userscript manager will open a new tab and ask you to confirm the installation.
+        Violentmonkey
 
-Legal Disclaimer
+        Greasemonkey
 
-This tool is provided for educational, research, and accessibility purposes. It is a general-purpose tool, and its functions may have unintended consequences on some websites. The responsibility for ensuring compliance with all applicable laws, including copyright law and website terms of service, rests solely with the user. The developers of this script are not liable for its misuse.
-License
+    Navigate to the futz-toolkit.user.js script file in this repository.
+
+    Click the [Raw] button.
+
+    Your userscript manager will prompt you to confirm the installation.
+
+⚖️ Legal Disclaimer
+
+This tool is provided for educational, research, and accessibility purposes only. It is a general-purpose utility, and its use may have unintended consequences on some websites.
+
+    The responsibility for ensuring legal compliance with copyright laws, Fair Use provisions, and website terms of service lies solely with the user. The developers are not liable for any misuse of the script.
+
+📄 License
 
 This project is licensed under the MIT License.
